@@ -1,0 +1,22 @@
+# Ignore Library, Logs, and Temp files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+UserSettings/
+
+# Ignore auto-generated Visual Studio files
+*.csproj
+*.sln
+*.suo
+*.user
+*.unityproj
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+
+# Ignore Unity's metadata files
+*.unitypackage
