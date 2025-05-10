@@ -9,3 +9,7 @@ There are two options for the level design: Either make the level random generat
 
 The game will have a top down view runner style with simple graphics focusing on the game-mechanics, where the screen in split so it can accomodate two player at the same time, but they are not connected in any way. This means, even though it is split-screen game it is a single-player game.
 
+The 3 milestones for the project could be:
+    Have the basic gameplay ready
+    Main menu, ability to save, powerups
+    polishing
