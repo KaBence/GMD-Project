@@ -56,4 +56,12 @@ public class PlayerMovement : MonoBehaviour
             speed = 5;
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("HIT!");
+        }
+    }
 }
