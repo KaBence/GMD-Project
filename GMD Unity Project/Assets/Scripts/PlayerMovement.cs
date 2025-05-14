@@ -14,13 +14,17 @@ public class PlayerMovement : MonoBehaviour
 
     private int isWalkingHash;
     private int isRunningHash;
+    private int isJumpingHash;
     private Animator animator;
+
+    [SerializeField] private float jumpPower = 5f;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("IsWalking");
         isRunningHash = Animator.StringToHash("IsRunning");
+        isJumpingHash = Animator.StringToHash("IsJumping");
     }
 
 
@@ -54,6 +58,20 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
             speed = 5;
+        }
+    }
+
+    public void OnA(InputAction.CallbackContext value)
+    {
+        Debug.Log("A: ");
+        if (value.phase == InputActionPhase.Started)
+        {
+            animator.SetTrigger("Jump");
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            }
         }
     }
 
