@@ -14,17 +14,20 @@ public class PlayerMovement : MonoBehaviour
 
     private int isWalkingHash;
     private int isRunningHash;
-    private int isJumpingHash;
     private Animator animator;
 
     [SerializeField] private float jumpPower = 5f;
+
+    private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("IsWalking");
         isRunningHash = Animator.StringToHash("IsRunning");
-        isJumpingHash = Animator.StringToHash("IsJumping");
+        rb = GetComponent<Rigidbody>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
 
@@ -37,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 720 * Time.deltaTime);
         }
-    
+
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -67,11 +70,33 @@ public class PlayerMovement : MonoBehaviour
         if (value.phase == InputActionPhase.Started)
         {
             animator.SetTrigger("Jump");
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            }
+            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        }
+        else if (value.phase == InputActionPhase.Canceled)
+        {
+            animator.ResetTrigger("Jump");
+        }
+    }
+
+    public void OnRightTrigger(InputAction.CallbackContext value)
+    {
+        if (!animator.GetBool(isRunningHash))
+            return;
+        Vector3 inputDirection = new Vector3(movement.x, 0.0f, movement.y);
+
+        if (value.phase == InputActionPhase.Started)
+        {
+            Debug.Log("RT: ");
+            animator.SetTrigger("Sliding");
+            rb.AddForce(inputDirection.normalized * 10f, ForceMode.Impulse);
+
+            capsuleCollider.height = 0.5f;
+            capsuleCollider.center = new Vector3(0, 0.25f, 0);
+        }
+        else if (value.phase == InputActionPhase.Canceled)
+        {
+            capsuleCollider.height = 1f;
+            capsuleCollider.center = new Vector3(0, 0.5f, 0);
         }
     }
 

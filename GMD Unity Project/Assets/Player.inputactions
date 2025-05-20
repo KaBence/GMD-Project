@@ -63,7 +63,7 @@
                     "name": "RightTrigger",
                     "type": "Button",
                     "id": "9ddf46ee-17b0-447c-86cf-92214cd73ac5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -226,6 +226,17 @@
                     "name": "",
                     "id": "ab8e6945-de51-4779-98c9-3a60d75cd835",
                     "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2d8cec2-a9e2-4dd8-a876-a17154b60fc4",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
