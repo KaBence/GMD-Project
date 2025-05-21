@@ -10,16 +10,15 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Vector2 movement;
-    private float speed = 5;
 
     private int isWalkingHash;
     private int isRunningHash;
     private Animator animator;
 
-    [SerializeField] private float jumpPower = 5f;
 
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
+    private HandlePlayerSpeed playerSpeed;
 
     void Awake()
     {
@@ -28,13 +27,15 @@ public class PlayerMovement : MonoBehaviour
         isRunningHash = Animator.StringToHash("IsRunning");
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        playerSpeed = GetComponent<HandlePlayerSpeed>();
     }
 
 
     void Update()
     {
         Vector3 move = new Vector3(movement.x, 0.0f, movement.y);
-        transform.position += move * speed * Time.deltaTime;
+
+        transform.position += move * playerSpeed.speed * Time.deltaTime;
         if (movement != Vector2.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
@@ -55,12 +56,14 @@ public class PlayerMovement : MonoBehaviour
         if (value.phase == InputActionPhase.Started)
         {
             animator.SetBool(isRunningHash, true);
-            speed = 10;
+            playerSpeed.IsRunning = true;
+            playerSpeed.UpdatePlayerSpeed();
         }
         else if (value.phase == InputActionPhase.Canceled)
         {
             animator.SetBool(isRunningHash, false);
-            speed = 5;
+            playerSpeed.IsRunning = false;
+            playerSpeed.UpdatePlayerSpeed();
         }
     }
 
@@ -70,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         if (value.phase == InputActionPhase.Started)
         {
             animator.SetTrigger("Jump");
-            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * playerSpeed.jumpPower, ForceMode.Impulse);
         }
         else if (value.phase == InputActionPhase.Canceled)
         {

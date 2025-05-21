@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         // Move the camera forward
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        // transform.position += Vector3.forward * speed * Time.deltaTime;
 
         // Convert player world position to viewport space (0 to 1)
         Vector3 viewPos = cam.WorldToViewportPoint(player.transform.position);
