@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class RotateAround : MonoBehaviour
+public class Rotate : MonoBehaviour
 {
     [SerializeField] private Transform pivot;
     [SerializeField] private float speed = 80f;
@@ -10,6 +10,9 @@ public class RotateAround : MonoBehaviour
     private float currentAngle = 0f;
     private int direction = 1; // 1 or -1
 
+
+    // Rotates the object around a pivot point in a back-and-forth motion. 
+    // if the max angle is 360, it will rotate continuously.
 
     private void Start()
     {
@@ -20,10 +23,15 @@ public class RotateAround : MonoBehaviour
     {
         while (true)
         {
-            float deltaAngle = speed * Time.deltaTime * direction;
-
             // Apply rotation
+            float deltaAngle = speed * Time.deltaTime * direction;
             transform.RotateAround(pivot.position, axis, deltaAngle);
+
+            if (maxAngle == 360)
+            {
+                yield return null;
+                continue;
+            }
 
             // Track angle
             currentAngle += deltaAngle;
