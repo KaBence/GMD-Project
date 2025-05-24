@@ -6,8 +6,7 @@ public class CoinCollector : MonoBehaviour
 {
     private int coinCount = 0;
 
-    [SerializeField]
-    private TextMeshProUGUI coinCountText;
+    [SerializeField] private TextMeshProUGUI coinCountText;
 
 
     public void OnTriggerEnter(Collider other)
