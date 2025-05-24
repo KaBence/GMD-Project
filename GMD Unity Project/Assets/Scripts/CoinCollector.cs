@@ -21,6 +21,6 @@ public class CoinCollector : MonoBehaviour
 
     private void UpdateCoinCountText()
     {
-        coinCountText.text = "Coins: " + coinCount.ToString();
+        coinCountText.text = "<sprite=0>: " + coinCount.ToString();
     }
 }

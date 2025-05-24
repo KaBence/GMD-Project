@@ -12,7 +12,7 @@ public class HealthController : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
-        HPText.text = "HP: " + currentHealth.ToString();
+        HPText.text = "<sprite=0> : " + currentHealth.ToString();
 
     }
 
@@ -28,7 +28,8 @@ public class HealthController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        HPText.text = "HP: " + currentHealth.ToString();
+        HPText.text = "<sprite=0> : " + currentHealth.ToString();
+
         if (currentHealth <= 0)
         {
             Die();
@@ -45,7 +46,7 @@ public class HealthController : MonoBehaviour
         HPText.text = "HP: " + currentHealth.ToString();
     }
 
-    
+
 
     private void Die()
     {
