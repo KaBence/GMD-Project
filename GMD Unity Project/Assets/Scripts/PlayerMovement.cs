@@ -93,14 +93,23 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Sliding");
             rb.AddForce(inputDirection.normalized * 10f, ForceMode.Impulse);
 
-            capsuleCollider.height = 0.5f;
-            capsuleCollider.center = new Vector3(0, 0.25f, 0);
-        }
-        else if (value.phase == InputActionPhase.Canceled)
-        {
             capsuleCollider.height = 1f;
-            capsuleCollider.center = new Vector3(0, 0.5f, 0);
+            capsuleCollider.center = new Vector3(0, 0.4f, 0);
+
+            StartCoroutine(ResetColliderAfterDelay(1f));
         }
+    }
+
+    private IEnumerator ResetColliderAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ResetCapsuleCollider();
+    }
+
+    private void ResetCapsuleCollider()
+    {
+        capsuleCollider.height = 2f;
+        capsuleCollider.center = new Vector3(0, 0.8f, 0);
     }
 
     void OnCollisionEnter(Collision collision)
