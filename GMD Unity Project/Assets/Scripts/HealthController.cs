@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 1;
     [SerializeField] private int currentHealth;
 
     [SerializeField] private TextMeshProUGUI HPText;
@@ -21,7 +21,7 @@ public class HealthController : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("HIT!");
-            TakeDamage(10);
+            TakeDamage(1);
         }
     }
 
@@ -31,19 +31,15 @@ public class HealthController : MonoBehaviour
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     public void Heal(int amount)
     {
         currentHealth += amount;
         if (currentHealth > maxHealth)
-        {
             currentHealth = maxHealth; // Ensure health doesn't exceed max
-        }
-        HPText.text = "HP: " + currentHealth.ToString();
+        HPText.text = "<sprite=0> : " + currentHealth.ToString();
     }
 
 
@@ -51,10 +47,8 @@ public class HealthController : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died.");
-        // Here you can add logic for player death, like respawning or ending the game.
         currentHealth = 0; // Ensure health doesn't go below zero
-        HPText.text = "HP: " + currentHealth.ToString();
-
-        Destroy(gameObject); // Optionally destroy the player object
+        HPText.text = "<sprite=0> : " + currentHealth.ToString();
+        Destroy(gameObject);
     }
 }

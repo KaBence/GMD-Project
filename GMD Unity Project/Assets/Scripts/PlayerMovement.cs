@@ -111,12 +111,4 @@ public class PlayerMovement : MonoBehaviour
         capsuleCollider.height = 2f;
         capsuleCollider.center = new Vector3(0, 0.8f, 0);
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            Debug.Log("HIT!");
-        }
-    }
 }
