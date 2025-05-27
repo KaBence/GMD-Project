@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 1;
+    private int maxHealth = 2;
     [SerializeField] private int currentHealth;
 
     [SerializeField] private TextMeshProUGUI HPText;
@@ -29,7 +29,7 @@ public class HealthController : MonoBehaviour
     {
         currentHealth -= damage;
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
-
+        CameraShake.Instance.ShakeCamera(0.1f, 0.1f); // Shake the camera on hit
         if (currentHealth <= 0)
             Die();
     }

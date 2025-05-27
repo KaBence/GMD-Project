@@ -16,6 +16,11 @@ public class Rotate : MonoBehaviour
 
     private void Start()
     {
+        // Pick a random starting angle between -maxAngle and maxAngle
+        float randomStartAngle = Random.Range(-maxAngle, maxAngle);
+        transform.RotateAround(pivot.position, axis, randomStartAngle);
+        currentAngle = randomStartAngle;
+
         StartCoroutine(RotateBackAndForth());
     }
 
