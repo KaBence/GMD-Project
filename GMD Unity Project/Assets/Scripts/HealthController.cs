@@ -25,6 +25,15 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("FallDetector"))
+        {
+            Debug.Log("Fell off the map!");
+            Die();
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;

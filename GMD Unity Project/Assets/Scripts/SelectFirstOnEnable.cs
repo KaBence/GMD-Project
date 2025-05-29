@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class SelectFirstOnEnable : MonoBehaviour
 {
-    public GameObject firstSelected;
+    [SerializeField] private GameObject firstSelected;
 
     void OnEnable()
     {
