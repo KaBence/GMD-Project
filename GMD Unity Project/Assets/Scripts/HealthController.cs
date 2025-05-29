@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    private int maxHealth = 2;
+    private int maxHealth;
     [SerializeField] private int currentHealth;
 
     [SerializeField] private TextMeshProUGUI HPText;
@@ -11,6 +11,7 @@ public class HealthController : MonoBehaviour
 
     private void Awake()
     {
+        maxHealth = PlayerPrefs.GetInt("MaxHealth", 1);
         currentHealth = maxHealth;
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
 
