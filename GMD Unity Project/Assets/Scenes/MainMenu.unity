@@ -1019,9 +1019,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1591238854}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeJumpForce
+      - m_Target: {fileID: 1591238860}
+        m_TargetAssemblyTypeName: IUpgradeables, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1461,9 +1461,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1591238854}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeMovementSpeed
+      - m_Target: {fileID: 1591238859}
+        m_TargetAssemblyTypeName: IUpgradeables, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1683,9 +1683,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1591238854}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeHealth
+      - m_Target: {fileID: 1591238855}
+        m_TargetAssemblyTypeName: IUpgradeables, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1918,7 +1918,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.5999451, y: -423.90002}
+  m_AnchoredPosition: {x: 1.5999451, y: -507}
   m_SizeDelta: {x: 220, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &919001232
@@ -2111,9 +2111,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1591238854}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeSliding
+      - m_Target: {fileID: 1591238857}
+        m_TargetAssemblyTypeName: IUpgradeables, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2662,9 +2662,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1591238854}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: ResetUpgrades
+      - m_Target: {fileID: 1591238858}
+        m_TargetAssemblyTypeName: ResetUpgrades, Assembly-CSharp
+        m_MethodName: ResetUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3057,9 +3057,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1591238854}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeWaterMovementSpeed
+      - m_Target: {fileID: 1591238856}
+        m_TargetAssemblyTypeName: IUpgradeables, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3141,7 +3141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -209.3, y: -253.7}
+  m_AnchoredPosition: {x: -209.3, y: -303}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1369239606
@@ -4321,14 +4321,19 @@ GameObject:
   m_Component:
   - component: {fileID: 1591238852}
   - component: {fileID: 1591238853}
-  - component: {fileID: 1591238854}
+  - component: {fileID: 1591238855}
+  - component: {fileID: 1591238860}
+  - component: {fileID: 1591238859}
+  - component: {fileID: 1591238858}
+  - component: {fileID: 1591238857}
+  - component: {fileID: 1591238856}
   m_Layer: 5
   m_Name: Upgrades
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1591238852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4370,7 +4375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstSelected: {fileID: 997544886}
---- !u!114 &1591238854
+--- !u!114 &1591238855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4379,16 +4384,85 @@ MonoBehaviour:
   m_GameObject: {fileID: 1591238851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1928db7475f83cb4db61647d93fa470c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0563e057736006441aef693b2b8f6a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CoinCountText: {fileID: 1104259853}
-  MaxHealthText: {fileID: 1911137601}
-  SlidingUnlockedText: {fileID: 793896482}
-  MovementSpeedText: {fileID: 1222262910}
-  WaterMovementSpeedText: {fileID: 2017099198}
-  JumpForceText: {fileID: 1560806373}
+  buttonText: {fileID: 1911137601}
   InfoText: {fileID: 234137539}
+  coinCountText: {fileID: 1104259853}
+--- !u!114 &1591238856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591238851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5fc76d8c05ab24f967c6b97bb6983f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 2017099198}
+  InfoText: {fileID: 234137539}
+  coinCountText: {fileID: 1104259853}
+--- !u!114 &1591238857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591238851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff39a2b7b349d64c8a7fa4492d24a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 793896482}
+  InfoText: {fileID: 234137539}
+  coinCountText: {fileID: 1104259853}
+--- !u!114 &1591238858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591238851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b9d7222ac3ef244833a737dc6f6727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InfoText: {fileID: 234137539}
+--- !u!114 &1591238859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591238851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 060fd2752776e90478820b836323465e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 1222262910}
+  InfoText: {fileID: 234137539}
+  coinCountText: {fileID: 1104259853}
+--- !u!114 &1591238860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591238851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c7d581058ec7842af3375d0ee2ba62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 1560806373}
+  InfoText: {fileID: 234137539}
+  coinCountText: {fileID: 1104259853}
 --- !u!1 &1601827849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4906,7 +4980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.9, y: -253.7}
+  m_AnchoredPosition: {x: -9.9, y: -304}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1911137599
