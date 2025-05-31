@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HealthController : MonoBehaviour
 {
@@ -8,13 +9,14 @@ public class HealthController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI HPText;
 
+    [SerializeField] private DeathSceneUI deathSceneUI;
+
 
     private void Awake()
     {
-        maxHealth = PlayerPrefs.GetInt("MaxHealth", 1);
+        maxHealth = PlayerPrefs.GetInt(IUpgradeables.healthKey, 1);
         currentHealth = maxHealth;
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
-
     }
 
     void OnCollisionEnter(Collision collision)
@@ -59,6 +61,6 @@ public class HealthController : MonoBehaviour
         Debug.Log("Player has died.");
         currentHealth = 0; // Ensure health doesn't go below zero
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
-        Destroy(gameObject);
+        deathSceneUI.ShowDeathPopup();
     }
 }

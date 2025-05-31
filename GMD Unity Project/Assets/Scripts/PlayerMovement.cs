@@ -20,8 +20,11 @@ public class PlayerMovement : MonoBehaviour
     private CapsuleCollider capsuleCollider;
     private HandlePlayerSpeed playerSpeed;
 
+    private bool isSlidingunlocked = false;
+
     void Awake()
     {
+        isSlidingunlocked = PlayerPrefs.GetInt(IUpgradeables.slidingKey, 0) == 1;
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("IsWalking");
         isRunningHash = Animator.StringToHash("IsRunning");
@@ -69,9 +72,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnA(InputAction.CallbackContext value)
     {
-        Debug.Log("A: ");
         if (value.phase == InputActionPhase.Started)
         {
+            Debug.Log("A: ");
             animator.SetTrigger("Jump");
             rb.AddForce(Vector3.up * playerSpeed.jumpPower, ForceMode.Impulse);
         }
@@ -85,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!animator.GetBool(isRunningHash))
             return;
+
         Vector3 inputDirection = new Vector3(movement.x, 0.0f, movement.y);
 
         if (value.phase == InputActionPhase.Started)

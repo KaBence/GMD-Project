@@ -20,7 +20,7 @@ public class MoveSpeedUpgrade : IUpgradeables
     }
     protected override int GetUpgradeCost()
     {
-        return 5 + GetUpgradeValue() * 2;
+        return 5 + Mathf.CeilToInt(GetUpgradeValue()) * 2;
     }
 
     protected override string GetUpgradeString()
@@ -28,9 +28,9 @@ public class MoveSpeedUpgrade : IUpgradeables
         return movementSpeedKey;
     }
 
-    protected override int GetUpgradeValue()
+    protected override float GetUpgradeValue()
     {
-        return PlayerPrefs.GetInt(GetUpgradeString(), 3);
+        return PlayerPrefs.GetFloat(GetUpgradeString(), 3f);
     }
 
     public override void RefreshUI()

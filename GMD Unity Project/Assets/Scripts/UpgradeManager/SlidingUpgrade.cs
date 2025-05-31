@@ -31,9 +31,9 @@ public class SlidingUpgrade : IUpgradeables
         return slidingKey;
     }
 
-    protected override int GetUpgradeValue()
+    protected override float GetUpgradeValue()
     {
-        return PlayerPrefs.GetInt(GetUpgradeString(), 0);
+        return PlayerPrefs.GetFloat(GetUpgradeString(), 0);
     }
 
     public override void RefreshUI()

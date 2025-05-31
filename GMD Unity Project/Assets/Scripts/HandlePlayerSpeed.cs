@@ -20,6 +20,19 @@ public class HandlePlayerSpeed : MonoBehaviour
     private float runningJumpPower = 6f;
     private float runningWaterJumpPower = 3f;
 
+    void Awake()
+    {
+        normalSpeed = PlayerPrefs.GetFloat(IUpgradeables.movementSpeedKey, 3f);
+        runningSpeed = normalSpeed * 2f;
+        waterSpeed = PlayerPrefs.GetFloat(IUpgradeables.waterSpeedKey, 2f);
+        runningWaterSpeed = waterSpeed * 1.75f;
+        normalJumpPower = PlayerPrefs.GetFloat(IUpgradeables.jumpForceKey, 5f);
+        waterJumpPower = normalJumpPower * 0.5f;
+        runningJumpPower = normalJumpPower * 1.2f;
+        runningWaterJumpPower = waterJumpPower * 1.2f;
+        UpdatePlayerSpeed();
+    }
+
 
     private void setSpeed(float newSpeed, float newJumpPower)
     {

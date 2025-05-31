@@ -23,7 +23,7 @@ public class HPUpgrade : IUpgradeables
 
     protected override int GetUpgradeCost()
     {
-        return 5 + GetUpgradeValue() * 2;
+        return 5 + Mathf.CeilToInt(GetUpgradeValue()) * 2;
     }
 
     protected override string GetUpgradeString()
@@ -31,7 +31,7 @@ public class HPUpgrade : IUpgradeables
         return healthKey;
     }
 
-    protected override int GetUpgradeValue()
+    protected override float GetUpgradeValue()
     {
         return PlayerPrefs.GetInt(GetUpgradeString(), 1);
     }

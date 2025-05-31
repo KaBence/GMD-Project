@@ -22,7 +22,7 @@ public class JumpUpgrade : IUpgradeables
 
     protected override int GetUpgradeCost()
     {
-        return 5 + GetUpgradeValue() * 2;
+        return 5 + Mathf.CeilToInt(GetUpgradeValue()) * 2;
     }
 
     protected override string GetUpgradeString()
@@ -30,9 +30,9 @@ public class JumpUpgrade : IUpgradeables
         return jumpForceKey;
     }
 
-    protected override int GetUpgradeValue()
+    protected override float GetUpgradeValue()
     {
-        return PlayerPrefs.GetInt(GetUpgradeString(), 5);
+        return PlayerPrefs.GetFloat(GetUpgradeString(), 5);
     }
 
     public override void RefreshUI()

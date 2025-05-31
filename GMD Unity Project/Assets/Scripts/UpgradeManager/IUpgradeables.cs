@@ -29,7 +29,7 @@ public abstract class IUpgradeables : MonoBehaviour
 
     protected abstract int GetUpgradeCost();
     protected abstract string GetUpgradeString();
-    protected abstract int GetUpgradeValue();
+    protected abstract float GetUpgradeValue();
 
     public string GetUpgradeValueString()
     {
