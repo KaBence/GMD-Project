@@ -5,7 +5,7 @@ public class HPUpgrade : IUpgradeables
 
     public override bool CanUpgrade()
     {
-        if (GetUpgradeValue() >= 10)
+        if (GetUpgradeValue() >= 10f)
         {
             Debug.Log(GetUpgradeString() + " is already at max level.");
             InfoText.text = GetUpgradeString() + " is already at max level.";
@@ -33,7 +33,7 @@ public class HPUpgrade : IUpgradeables
 
     protected override float GetUpgradeValue()
     {
-        return PlayerPrefs.GetInt(GetUpgradeString(), 1);
+        return PlayerPrefs.GetFloat(GetUpgradeString(), 1);
     }
 
     public override void RefreshUI()

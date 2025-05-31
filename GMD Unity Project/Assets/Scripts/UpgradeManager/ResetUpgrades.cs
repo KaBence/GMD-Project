@@ -27,10 +27,10 @@ public class ResetUpgrades : MonoBehaviour
     {
         PlayerPrefs.SetInt(IUpgradeables.coinCountKey, 9999);
         PlayerPrefs.SetInt(IUpgradeables.healthKey, 1);
-        PlayerPrefs.SetInt(IUpgradeables.movementSpeedKey, 3);
-        PlayerPrefs.SetInt(IUpgradeables.waterSpeedKey, 2);
-        PlayerPrefs.SetInt(IUpgradeables.jumpForceKey, 5);
-        PlayerPrefs.SetInt(IUpgradeables.slidingKey, 0);
+        PlayerPrefs.SetFloat(IUpgradeables.movementSpeedKey, 3);
+        PlayerPrefs.SetFloat(IUpgradeables.waterSpeedKey, 2);
+        PlayerPrefs.SetFloat(IUpgradeables.jumpForceKey, 5);
+        PlayerPrefs.SetFloat(IUpgradeables.slidingKey, 0);
         RefreshUI();
         Debug.Log("All upgrades reset to default values.");
         InfoText.text = "Upgrades reset to default values.";

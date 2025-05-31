@@ -21,7 +21,7 @@ public class WaterSpeedUpgrade : IUpgradeables
     }
     protected override int GetUpgradeCost()
     {
-        return 5 + GetUpgradeValue() * 2;
+        return 5 + Mathf.CeilToInt(GetUpgradeValue()) * 2;
     }
 
     protected override string GetUpgradeString()
@@ -29,9 +29,9 @@ public class WaterSpeedUpgrade : IUpgradeables
         return waterSpeedKey;
     }
 
-    protected override int GetUpgradeValue()
+    protected override float GetUpgradeValue()
     {
-        return PlayerPrefs.GetInt(GetUpgradeString(), 2);
+        return PlayerPrefs.GetFloat(GetUpgradeString(), 2);
     }
 
     public override void RefreshUI()

@@ -61,8 +61,8 @@ public abstract class IUpgradeables : MonoBehaviour
         int coin = getCoinCount() - GetUpgradeCost();
         PlayerPrefs.SetInt(coinCountKey, coin);
 
-        int upgradeValue = PlayerPrefs.GetInt(GetUpgradeString(), 0);
-        PlayerPrefs.SetInt(GetUpgradeString(), ++upgradeValue);
+        float upgradeValue = PlayerPrefs.GetFloat(GetUpgradeString(), 0f);
+        PlayerPrefs.SetFloat(GetUpgradeString(), ++upgradeValue);
         Debug.Log(GetUpgradeString() + " upgraded to: " + upgradeValue);
         RefreshUI();
     }
