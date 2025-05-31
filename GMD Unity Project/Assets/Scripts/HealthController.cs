@@ -10,6 +10,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI HPText;
 
     [SerializeField] private DeathSceneUI deathSceneUI;
+    [SerializeField] private WinScene winScene;
 
 
     private void Awake()
@@ -34,6 +35,11 @@ public class HealthController : MonoBehaviour
         {
             Debug.Log("Fell off the map!");
             Die();
+        }
+        else if (other.gameObject.CompareTag("WinDetector"))
+        {
+            Debug.Log("Reached the end!");
+            winScene.ShowWinPopup();
         }
     }
 

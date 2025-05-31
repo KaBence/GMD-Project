@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Coin
   - FallDetector
+  - WinDetector
   layers:
   - Default
   - TransparentFX

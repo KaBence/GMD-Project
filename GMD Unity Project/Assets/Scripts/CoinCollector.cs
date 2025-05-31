@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoinCollector : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CoinCollector : MonoBehaviour
     private int coinCount = 0;
 
     [SerializeField] private TextMeshProUGUI coinCountText;
+    [SerializeField] private TextMeshProUGUI endGameCoinCountText;
 
 
     private void Awake()
@@ -30,6 +32,7 @@ public class CoinCollector : MonoBehaviour
     private void UpdateCoinCountText()
     {
         coinCountText.text = "<sprite=0>: " + coinCount.ToString();
+        endGameCoinCountText.text = "Coins Collected: " + coinCount.ToString();
     }
 
     private void OnDisable()
