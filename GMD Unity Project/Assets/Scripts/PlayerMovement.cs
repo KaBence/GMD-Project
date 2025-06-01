@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private Vector2 movement;
+    public Vector2 movement;
 
     private int isWalkingHash;
     private int isRunningHash;
@@ -22,9 +22,12 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isSlidingunlocked = false;
 
+    public LayerMask groundLayer;
+    private float groundCheckDistance = 0.2f;
+
     void Awake()
     {
-        isSlidingunlocked = PlayerPrefs.GetInt(IUpgradeables.slidingKey, 0) == 1;
+        isSlidingunlocked = PlayerPrefs.GetFloat(IUpgradeables.slidingKey, 0) == 1;
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("IsWalking");
         isRunningHash = Animator.StringToHash("IsRunning");
@@ -45,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 720 * Time.deltaTime);
         }
 
+    }
+
+    public bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -72,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnA(InputAction.CallbackContext value)
     {
+        if (!IsGrounded())
+        {
+            Debug.Log("Cannot jump while in the air.");
+            return;
+        }
+
         if (value.phase == InputActionPhase.Started)
         {
             Debug.Log("A: ");
@@ -86,6 +100,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnRightTrigger(InputAction.CallbackContext value)
     {
+        if (!isSlidingunlocked)
+        {
+            Debug.Log("Sliding is not unlocked.");
+            return;
+        }
+
         if (!animator.GetBool(isRunningHash))
             return;
 
