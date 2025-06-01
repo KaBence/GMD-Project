@@ -13,14 +13,19 @@ public class LevelStarter : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DisableTemporarily());
-        StartCoroutine(CountdownRoutine());
+        Time.timeScale = 0f; // Pause the game initially
+        StartCoroutine(LevelStartSequence());
+    }
 
+    IEnumerator LevelStartSequence()
+    {
+        yield return StartCoroutine(DisableTemporarily());
+        yield return StartCoroutine(CountdownRoutine());
+        Time.timeScale = 1f; // Resume the game after everything is done
     }
 
     IEnumerator DisableTemporarily()
     {
-        // Disable all MonoBehaviour scripts on target objects
         foreach (var obj in controlObjects)
         {
             foreach (var script in obj.GetComponents<MonoBehaviour>())
@@ -29,9 +34,8 @@ public class LevelStarter : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(disableDuration);
+        yield return new WaitForSecondsRealtime(disableDuration);
 
-        // Re-enable them after delay
         foreach (var obj in controlObjects)
         {
             foreach (var script in obj.GetComponents<MonoBehaviour>())
@@ -49,7 +53,7 @@ public class LevelStarter : MonoBehaviour
             yield return StartCoroutine(FadeText());
         }
 
-        countdownText.gameObject.SetActive(false); // hide after countdown
+        countdownText.gameObject.SetActive(false);
     }
 
     IEnumerator FadeText()
@@ -58,25 +62,24 @@ public class LevelStarter : MonoBehaviour
         float halfDuration = duration / 2f;
 
         // Fade in
-        for (float t = 0; t < halfDuration; t += Time.deltaTime)
+        for (float t = 0; t < halfDuration; t += Time.unscaledDeltaTime)
         {
             float alpha = t / halfDuration;
             countdownText.color = new Color(1, 1, 1, alpha);
             yield return null;
         }
 
-        // Stay fully visible briefly
         countdownText.color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
         // Fade out
-        for (float t = 0; t < halfDuration; t += Time.deltaTime)
+        for (float t = 0; t < halfDuration; t += Time.unscaledDeltaTime)
         {
             float alpha = 1 - (t / halfDuration);
             countdownText.color = new Color(1, 1, 1, alpha);
             yield return null;
         }
 
-        countdownText.color = new Color(1, 1, 1, 0); // ensure fully invisible
+        countdownText.color = new Color(1, 1, 1, 0);
     }
 }
