@@ -22,6 +22,11 @@ public class CameraShake : MonoBehaviour
 
         while (elapsed < duration)
         {
+            if (Time.timeScale == 0f)
+            {
+                transform.localPosition = originalPos;
+                yield break;
+            }
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 

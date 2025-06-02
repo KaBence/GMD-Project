@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    private HealthController healthController;
     private Camera cam;
+    [SerializeField] private GameObject player;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float verticalMargin = 0.05f;
 
+
+
+    [SerializeField] private float outOfBoundsDamageCooldown = 1f; // seconds
+    private float outOfBoundsTimer = 0f;
     void Awake()
     {
         cam = GetComponent<Camera>();
+        healthController = player.GetComponent<HealthController>();
     }
 
     // Update is called once per frame
@@ -21,18 +27,21 @@ public class CameraController : MonoBehaviour
         // Convert player world position to viewport space (0 to 1)
         Vector3 viewPos = cam.WorldToViewportPoint(player.transform.position);
 
-        // If the player is outside the margins, nudge them back in
-        if (viewPos.y < verticalMargin)
-            viewPos.y = verticalMargin;
-        else if (viewPos.y > 1f - verticalMargin)
-            viewPos.y = 1f - verticalMargin;
+        bool outOfBounds = viewPos.y < verticalMargin || viewPos.y > 1f - verticalMargin;
 
-        // Convert back to world space
-        Vector3 correctedWorldPos = cam.ViewportToWorldPoint(viewPos);
-
-        // Keep player's Y position (so jumping etc. still works)
-        correctedWorldPos.y = player.transform.position.y;
-
-        player.transform.position = correctedWorldPos;
+        if (outOfBounds)
+        {
+            outOfBoundsTimer -= Time.deltaTime;
+            if (outOfBoundsTimer <= 0f)
+            {
+                healthController.TakeDamage(1);
+                outOfBoundsTimer = outOfBoundsDamageCooldown;
+            }
+        }
+        else
+        {
+            // Reset the timer only when the player returns to bounds
+            outOfBoundsTimer = 0f;
+        }
     }
 }

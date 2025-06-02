@@ -15,7 +15,7 @@ public class HealthController : MonoBehaviour
 
     private void Awake()
     {
-        maxHealth = PlayerPrefs.GetFloat(IUpgradeables.healthKey, 10);
+        maxHealth = PlayerPrefs.GetFloat(IUpgradeables.healthKey, 1);
         currentHealth = maxHealth;
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
     }
