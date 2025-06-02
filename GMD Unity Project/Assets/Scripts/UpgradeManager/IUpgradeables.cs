@@ -23,13 +23,15 @@ public abstract class IUpgradeables : MonoBehaviour
 
     [SerializeField] protected TextMeshProUGUI buttonText;
     [SerializeField] protected TextMeshProUGUI InfoText;
-    
+
     [SerializeField] protected TextMeshProUGUI coinCountText;
 
 
     protected abstract int GetUpgradeCost();
     protected abstract string GetUpgradeString();
     protected abstract float GetUpgradeValue();
+
+    protected abstract int getMaxUpgradeValue();
 
     public string GetUpgradeValueString()
     {
@@ -38,7 +40,7 @@ public abstract class IUpgradeables : MonoBehaviour
 
     public virtual void RefreshUI()
     {
-        coinCountText.text = "Coins: "+ getCoinCount().ToString();
+        coinCountText.text = "Coins: " + getCoinCount().ToString();
     }
     public virtual bool CanUpgrade()
     {
@@ -52,7 +54,7 @@ public abstract class IUpgradeables : MonoBehaviour
         return true;
     }
 
-    public void Upgrade()
+    public virtual void Upgrade()
     {
         if (!CanUpgrade())
             return;
@@ -62,7 +64,10 @@ public abstract class IUpgradeables : MonoBehaviour
         PlayerPrefs.SetInt(coinCountKey, coin);
 
         float upgradeValue = PlayerPrefs.GetFloat(GetUpgradeString(), 0f);
-        PlayerPrefs.SetFloat(GetUpgradeString(), ++upgradeValue);
+        upgradeValue += 0.2f;
+        // Round to nearest 0.2
+        upgradeValue = Mathf.Round(upgradeValue * 5f) / 5f;
+        PlayerPrefs.SetFloat(GetUpgradeString(), upgradeValue);
         Debug.Log(GetUpgradeString() + " upgraded to: " + upgradeValue);
         RefreshUI();
     }
@@ -76,5 +81,5 @@ public abstract class IUpgradeables : MonoBehaviour
     {
         RefreshUI();
     }
-    
+
 }

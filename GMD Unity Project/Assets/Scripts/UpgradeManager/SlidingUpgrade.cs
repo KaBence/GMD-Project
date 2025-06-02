@@ -4,7 +4,7 @@ public class SlidingUpgrade : IUpgradeables
 {
     public override bool CanUpgrade()
     {
-        if (GetUpgradeValue() == 1)
+        if (GetUpgradeValue() == getMaxUpgradeValue())
         {
             Debug.Log($"{GetUpgradeString()} is already unlocked.");
             InfoText.text = $"{GetUpgradeString()} is already unlocked.";
@@ -38,7 +38,7 @@ public class SlidingUpgrade : IUpgradeables
 
     public override void RefreshUI()
     {
-        if (GetUpgradeValue() == 1)
+        if (GetUpgradeValue() == getMaxUpgradeValue())
         {
             buttonText.text = $"Sliding : Unlocked";
         }
@@ -47,5 +47,22 @@ public class SlidingUpgrade : IUpgradeables
             buttonText.text = $"Sliding : Locked (Cost: {GetUpgradeCost()})";
         }
         base.RefreshUI();
+    }
+
+    public override void Upgrade()
+    {
+        if (!CanUpgrade())
+            return;
+
+        PlayerPrefs.SetFloat(GetUpgradeString(), 1);
+        RefreshUI();
+        InfoText.text = $"{GetUpgradeString()} unlocked!";
+        InfoText.color = Color.green;
+        Debug.Log($"{GetUpgradeString()} unlocked!");
+    }
+
+    protected override int getMaxUpgradeValue()
+    {
+        return 1;
     }
 }

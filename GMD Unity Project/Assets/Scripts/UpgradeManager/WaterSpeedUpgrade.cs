@@ -5,7 +5,7 @@ public class WaterSpeedUpgrade : IUpgradeables
 
     public override bool CanUpgrade()
     {
-        if (GetUpgradeValue() >= 10)
+        if (GetUpgradeValue() >= getMaxUpgradeValue())
         {
             Debug.Log(GetUpgradeString() + " is already at max level.");
             InfoText.text = GetUpgradeString() + " is already at max level.";
@@ -21,7 +21,7 @@ public class WaterSpeedUpgrade : IUpgradeables
     }
     protected override int GetUpgradeCost()
     {
-        return 5 + Mathf.CeilToInt(GetUpgradeValue()) * 2;
+        return Mathf.CeilToInt(5 + GetUpgradeValue() * 2);
     }
 
     protected override string GetUpgradeString()
@@ -36,7 +36,7 @@ public class WaterSpeedUpgrade : IUpgradeables
 
     public override void RefreshUI()
     {
-        if (GetUpgradeValue() >= 10)
+        if (GetUpgradeValue() >= getMaxUpgradeValue())
         {
             buttonText.text = $"Water Speed Upgrade: {GetUpgradeValueString()} (Max Level)";
         }
@@ -45,5 +45,10 @@ public class WaterSpeedUpgrade : IUpgradeables
             buttonText.text = $"Water Speed Upgrade: {GetUpgradeValueString()} (Cost: {GetUpgradeCost()})";
         }
         base.RefreshUI();
+    }
+
+    protected override int getMaxUpgradeValue()
+    {
+        return 4;
     }
 }

@@ -1945,7 +1945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2514437036053090885, guid: 3927f4bf5858ce246b2b0b45674eef26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 2514437036053090885, guid: 3927f4bf5858ce246b2b0b45674eef26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1982,6 +1982,10 @@ PrefabInstance:
     - target: {fileID: 7906590365669671601, guid: 3927f4bf5858ce246b2b0b45674eef26, type: 3}
       propertyPath: m_Name
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906590365669671601, guid: 3927f4bf5858ce246b2b0b45674eef26, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2948,6 +2952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runAudioClip: {fileID: 8300000, guid: d51a5b60ad81db548bb82fc2155524fd, type: 3}
+  jumpAudioClip: {fileID: 8300000, guid: 9a80c7320809cc344b295b0eb551e7f0, type: 3}
 --- !u!82 &1316266780
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4599,7 +4604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Countdown
+  m_text: Get Ready...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4704,7 +4709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2514437036053090885, guid: 9767bf98087d4594f9d3401ee82f4de1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 2514437036053090885, guid: 9767bf98087d4594f9d3401ee82f4de1, type: 3}
       propertyPath: m_LocalPosition.z

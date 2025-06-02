@@ -5,7 +5,7 @@ public class HPUpgrade : IUpgradeables
 
     public override bool CanUpgrade()
     {
-        if (GetUpgradeValue() >= 10f)
+        if (GetUpgradeValue() >= getMaxUpgradeValue())
         {
             Debug.Log(GetUpgradeString() + " is already at max level.");
             InfoText.text = GetUpgradeString() + " is already at max level.";
@@ -23,7 +23,7 @@ public class HPUpgrade : IUpgradeables
 
     protected override int GetUpgradeCost()
     {
-        return 5 + Mathf.CeilToInt(GetUpgradeValue()) * 2;
+        return Mathf.CeilToInt(5 + GetUpgradeValue() * 2);
     }
 
     protected override string GetUpgradeString()
@@ -38,7 +38,7 @@ public class HPUpgrade : IUpgradeables
 
     public override void RefreshUI()
     {
-        if (GetUpgradeValue() >= 10)
+        if (GetUpgradeValue() >= getMaxUpgradeValue())
         {
             buttonText.text = $"HP Upgrade: {GetUpgradeValueString()} (Max Level)";
         }
@@ -47,5 +47,19 @@ public class HPUpgrade : IUpgradeables
             buttonText.text = $"HP Upgrade: {GetUpgradeValueString()} (Cost: {GetUpgradeCost()})";
         }
         base.RefreshUI();
+    }
+
+    public override void Upgrade()
+    {
+        if (!CanUpgrade())
+            return;
+
+        PlayerPrefs.SetFloat(GetUpgradeString(), GetUpgradeValue() + 1);
+        RefreshUI();
+    }
+
+    protected override int getMaxUpgradeValue()
+    {
+        return 5;
     }
 }
