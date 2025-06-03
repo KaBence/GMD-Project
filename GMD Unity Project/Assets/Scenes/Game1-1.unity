@@ -1255,6 +1255,7 @@ MonoBehaviour:
   player: {fileID: 1316266763}
   speed: 5
   verticalMargin: 0.05
+  outOfBoundsDamageCooldown: 1
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0

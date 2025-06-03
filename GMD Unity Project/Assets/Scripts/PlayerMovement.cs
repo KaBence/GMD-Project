@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private int isWalkingHash;
     private int isRunningHash;
+    private int IsSlidingHash;
     private Animator animator;
 
 
@@ -21,9 +22,11 @@ public class PlayerMovement : MonoBehaviour
     private HandlePlayerSpeed playerSpeed;
 
     private bool isSlidingunlocked = false;
+    private bool isSliding = false;
 
     public LayerMask groundLayer;
-    private float groundCheckDistance = 0.2f;
+    private float groundCheckDistance = 0.4f;
+    private Coroutine slideCoroutine;
 
     void Awake()
     {
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("IsWalking");
         isRunningHash = Animator.StringToHash("IsRunning");
+        IsSlidingHash = Animator.StringToHash("IsSliding");
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         playerSpeed = GetComponent<HandlePlayerSpeed>();
@@ -80,6 +84,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnA(InputAction.CallbackContext value)
     {
+        if (isSliding)
+        {
+            Debug.Log("Cannot jump while sliding.");
+            return;
+        }
+
         if (!IsGrounded())
         {
             Debug.Log("Cannot jump while in the air.");
@@ -114,20 +124,26 @@ public class PlayerMovement : MonoBehaviour
         if (value.phase == InputActionPhase.Started)
         {
             Debug.Log("RT: ");
-            animator.SetTrigger("Sliding");
+            animator.SetBool(IsSlidingHash, true);
             rb.AddForce(inputDirection.normalized * 10f, ForceMode.Impulse);
 
             capsuleCollider.height = 1f;
-            capsuleCollider.center = new Vector3(0, 0.4f, 0);
+            capsuleCollider.center = new Vector3(0, 0.25f, 0);
+            isSliding = true;
 
-            StartCoroutine(ResetColliderAfterDelay(1f));
+            if (slideCoroutine != null)
+                StopCoroutine(slideCoroutine);
+            slideCoroutine = StartCoroutine(AutoEndSlide(0.8f));
         }
     }
 
-    private IEnumerator ResetColliderAfterDelay(float delay)
+    private IEnumerator AutoEndSlide(float duration)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(duration);
+        animator.SetBool(IsSlidingHash, false);
         ResetCapsuleCollider();
+        isSliding = false;
+        slideCoroutine = null;
     }
 
     private void ResetCapsuleCollider()
