@@ -15,14 +15,23 @@ public class WinScene : MonoBehaviour
     {
         // IngameUI.SetActive(false);
         winPopupPanel.SetActive(true);
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
     }
 
     public void NextScene()
     {
         Debug.Log("Next scene...");
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            // Optionally, go back to main menu or loop
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void GoToMainMenu()
