@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class WinScene : MonoBehaviour
 {
     [SerializeField] private GameObject winPopupPanel;
-    // [SerializeField] private GameObject IngameUI;
 
     void Start()
     {
@@ -29,7 +28,6 @@ public class WinScene : MonoBehaviour
         }
         else
         {
-            // Optionally, go back to main menu or loop
             SceneManager.LoadScene("MainMenu");
         }
     }

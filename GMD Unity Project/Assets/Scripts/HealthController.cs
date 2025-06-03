@@ -20,9 +20,9 @@ public class HealthController : MonoBehaviour
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision other)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("HIT!");
             TakeDamage(1);
@@ -31,6 +31,12 @@ public class HealthController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Lava"))
+        {
+            Debug.Log("HIT!");
+            TakeDamage(1);
+        }
+        else
         if (other.gameObject.CompareTag("FallDetector"))
         {
             Debug.Log("Fell off the map!");
@@ -47,7 +53,7 @@ public class HealthController : MonoBehaviour
     {
         currentHealth -= damage;
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
-        CameraShake.Instance.ShakeCamera(0.1f, 0.1f); // Shake the camera on hit
+        CameraShake.Instance.ShakeCamera(0.1f, 0.1f); 
         if (currentHealth <= 0)
             Die();
     }
@@ -56,7 +62,7 @@ public class HealthController : MonoBehaviour
     {
         currentHealth += amount;
         if (currentHealth > maxHealth)
-            currentHealth = maxHealth; // Ensure health doesn't exceed max
+            currentHealth = maxHealth; 
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
     }
 
@@ -65,7 +71,7 @@ public class HealthController : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died.");
-        currentHealth = 0; // Ensure health doesn't go below zero
+        currentHealth = 0;
         HPText.text = "<sprite=0> : " + currentHealth.ToString();
         deathSceneUI.ShowDeathPopup();
     }

@@ -7,7 +7,6 @@ public class CameraShake : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton for easy access
         if (Instance == null)
             Instance = this;
         else

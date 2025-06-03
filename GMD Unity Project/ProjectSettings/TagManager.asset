@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - FallDetector
   - WinDetector
+  - Lava
   layers:
   - Default
   - TransparentFX

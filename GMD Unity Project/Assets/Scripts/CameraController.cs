@@ -6,11 +6,11 @@ public class CameraController : MonoBehaviour
     private Camera cam;
     [SerializeField] private GameObject player;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float verticalMargin = 0.05f;
+    [SerializeField] private float verticalMargin = 0.15f;
 
 
 
-    [SerializeField] private float outOfBoundsDamageCooldown = 1f; // seconds
+    [SerializeField] private float outOfBoundsDamageCooldown = 2f; // seconds
     private float outOfBoundsTimer = 0f;
     void Awake()
     {
@@ -37,11 +37,6 @@ public class CameraController : MonoBehaviour
                 healthController.TakeDamage(1);
                 outOfBoundsTimer = outOfBoundsDamageCooldown;
             }
-        }
-        else
-        {
-            // Reset the timer only when the player returns to bounds
-            outOfBoundsTimer = 0f;
         }
     }
 }

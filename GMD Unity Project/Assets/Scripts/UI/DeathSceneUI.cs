@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class DeathSceneUI : MonoBehaviour
 {
     [SerializeField] private GameObject deathPopupPanel;
-    // [SerializeField] private GameObject IngameUI;
 
     void Start()
     {
@@ -13,7 +12,6 @@ public class DeathSceneUI : MonoBehaviour
 
     public void ShowDeathPopup()
     {
-        // IngameUI.SetActive(false);
         deathPopupPanel.SetActive(true);
         Time.timeScale = 0f; 
     }

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3120194975553070814}
   - component: {fileID: 8158990721607139149}
   - component: {fileID: 419032860430960664}
+  - component: {fileID: 4878364928189653094}
   m_Layer: 4
   m_Name: Lava
-  m_TagString: Obstacle
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7906590365669671601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.32, z: 14.063}
+  m_LocalPosition: {x: 0.05, y: 0.26, z: 14.063}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0be7260c97ea5d2478435a3e7c41c86d, type: 2}
+  - {fileID: 2100000, guid: 196a83e4fac7a644ebc189706f6c2082, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,3 +109,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7906590365669671601}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4878364928189653094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906590365669671601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7905552477de9e04a97e9efccc133d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lavaMaterial: {fileID: 2100000, guid: 556764e17d7e53743849c8357d29096a, type: 2}
+  scrollSpeed: {x: 0.1, y: 0.1}

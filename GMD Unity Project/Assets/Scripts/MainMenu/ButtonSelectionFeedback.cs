@@ -9,17 +9,17 @@ public class ButtonSelectionFeedback : MonoBehaviour, ISelectHandler, IDeselectH
     public void OnSelect(BaseEventData eventData)
     {
         Debug.Log("Button selected: " + gameObject.name);
-        background.CrossFadeAlpha(0.8f, 0.2f, false); // fade to visible
+        background.CrossFadeAlpha(0.8f, 0.2f, false); 
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
         Debug.Log("Button deselected: " + gameObject.name);
-        background.CrossFadeAlpha(0f, 0.2f, false); // fade to invisible
+        background.CrossFadeAlpha(0f, 0.2f, false); 
     }
 
     void Start()
     {
-        background.canvasRenderer.SetAlpha(0f); // start hidden
+        background.canvasRenderer.SetAlpha(0f);
     }
 }
