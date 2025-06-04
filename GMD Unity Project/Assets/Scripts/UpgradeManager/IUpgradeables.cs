@@ -64,9 +64,9 @@ public abstract class IUpgradeables : MonoBehaviour
         PlayerPrefs.SetInt(coinCountKey, coin);
 
         float upgradeValue = PlayerPrefs.GetFloat(GetUpgradeString(), 0f);
-        upgradeValue += 0.2f;
+        upgradeValue += 0.1f;
         // Round to nearest 0.2
-        upgradeValue = Mathf.Round(upgradeValue * 5f) / 5f;
+        upgradeValue = Mathf.Round(upgradeValue * 10f) / 10f;
         PlayerPrefs.SetFloat(GetUpgradeString(), upgradeValue);
         Debug.Log(GetUpgradeString() + " upgraded to: " + upgradeValue);
         RefreshUI();

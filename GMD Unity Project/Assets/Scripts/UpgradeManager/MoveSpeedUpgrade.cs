@@ -48,6 +48,6 @@ public class MoveSpeedUpgrade : IUpgradeables
 
     protected override int getMaxUpgradeValue()
     {
-        return 6;
+        return 5;
     }
 }

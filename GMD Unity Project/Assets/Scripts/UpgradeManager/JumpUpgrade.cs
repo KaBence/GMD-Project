@@ -32,7 +32,7 @@ public class JumpUpgrade : IUpgradeables
 
     protected override float GetUpgradeValue()
     {
-        return PlayerPrefs.GetFloat(GetUpgradeString(), 5);
+        return PlayerPrefs.GetFloat(GetUpgradeString(), 4);
     }
 
     public override void RefreshUI()
@@ -50,6 +50,6 @@ public class JumpUpgrade : IUpgradeables
 
     protected override int getMaxUpgradeValue()
     {
-        return 7;
+        return 6;
     }
 }

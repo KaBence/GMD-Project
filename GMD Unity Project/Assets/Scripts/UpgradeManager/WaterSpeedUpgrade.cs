@@ -49,6 +49,6 @@ public class WaterSpeedUpgrade : IUpgradeables
 
     protected override int getMaxUpgradeValue()
     {
-        return 4;
+        return 3;
     }
 }
