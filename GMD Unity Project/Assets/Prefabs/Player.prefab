@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 121a4caf42e27664f9673dd8ce044683, type: 3}
       propertyPath: m_Name
-      value: Erika Archer With Bow Arrow
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 121a4caf42e27664f9673dd8ce044683, type: 3}
       propertyPath: m_Controller
