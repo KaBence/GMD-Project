@@ -25,7 +25,7 @@ public class ResetUpgrades : MonoBehaviour
 
     public void ResetUpgrade()
     {
-        PlayerPrefs.SetInt(IUpgradeables.coinCountKey, 9999);
+        PlayerPrefs.SetInt(IUpgradeables.coinCountKey, 0);
         PlayerPrefs.SetFloat(IUpgradeables.healthKey, 1);
         PlayerPrefs.SetFloat(IUpgradeables.movementSpeedKey, 3);
         PlayerPrefs.SetFloat(IUpgradeables.waterSpeedKey, 2);

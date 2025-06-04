@@ -74,7 +74,7 @@ public abstract class IUpgradeables : MonoBehaviour
 
     public int getCoinCount()
     {
-        return PlayerPrefs.GetInt(coinCountKey, 9999);
+        return PlayerPrefs.GetInt(coinCountKey, 0);
     }
 
     protected virtual void Awake()
