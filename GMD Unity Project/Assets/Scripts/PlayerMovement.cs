@@ -41,17 +41,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 move = new Vector3(movement.x, 0.0f, movement.y);
 
-        transform.position += move * playerSpeed.speed * Time.deltaTime;
+        rb.MovePosition(rb.position + move * playerSpeed.speed * Time.fixedDeltaTime);
         if (movement != Vector2.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 720 * Time.deltaTime);
         }
-
     }
 
     public bool IsGrounded()
