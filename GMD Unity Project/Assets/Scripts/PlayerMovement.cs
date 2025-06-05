@@ -118,6 +118,9 @@ public class PlayerMovement : MonoBehaviour
         if (!animator.GetBool(isRunningHash))
             return;
 
+        if (isSliding)
+            return;
+        
         Vector3 inputDirection = new Vector3(movement.x, 0.0f, movement.y);
 
         if (value.phase == InputActionPhase.Started)
