@@ -25,7 +25,6 @@ public class CoinCollector : MonoBehaviour
         {
             coinCount++;
             UpdateCoinCountText();
-            Destroy(other.gameObject);
         }
     }
 
