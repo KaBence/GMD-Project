@@ -53,6 +53,8 @@ public class HPUpgrade : IUpgradeables
     {
         if (!CanUpgrade())
             return;
+        int coin = getCoinCount() - GetUpgradeCost();
+        PlayerPrefs.SetInt(coinCountKey, coin);
 
         PlayerPrefs.SetFloat(GetUpgradeString(), GetUpgradeValue() + 1);
         RefreshUI();
