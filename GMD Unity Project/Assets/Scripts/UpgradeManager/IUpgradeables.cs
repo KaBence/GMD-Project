@@ -44,7 +44,7 @@ public abstract class IUpgradeables : MonoBehaviour
     }
     public virtual bool CanUpgrade()
     {
-        if (getCoinCount() <= GetUpgradeCost())
+        if (getCoinCount() < GetUpgradeCost())
         {
             Debug.Log("Not enough coins to upgrade " + GetUpgradeString() + ".");
             InfoText.text = "Not enough coins to upgrade " + GetUpgradeString() + ".\nYou need at least " + GetUpgradeCost() + " coins.";

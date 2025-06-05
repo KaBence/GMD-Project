@@ -53,6 +53,8 @@ public class SlidingUpgrade : IUpgradeables
     {
         if (!CanUpgrade())
             return;
+        int coin = getCoinCount() - GetUpgradeCost();
+        PlayerPrefs.SetInt(coinCountKey, coin);
 
         PlayerPrefs.SetFloat(GetUpgradeString(), 1);
         RefreshUI();
